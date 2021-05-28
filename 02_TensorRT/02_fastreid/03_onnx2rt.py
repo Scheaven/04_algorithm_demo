@@ -27,7 +27,7 @@ import cv2,os
 import torchvision
 import numpy as np
 
-max_batch_size = 4  # 明明batch是4 不知为何输出是16的批次
+max_batch_size = 4
 onnx_model_path = "/data/disk1/workspace/06_reid/01_fast_reid/02_fast_reid_inference/fastreid.onnx"
 TRT_LOGGER = trt.Logger()
 
@@ -91,9 +91,9 @@ def allocate_buffers(engine):
     for binding in engine:
         # print(binding) # 绑定的输入输出
         # print(engine.get_binding_shape(binding)) # get_binding_shape 是变量的大小
-        size = trt.volume(engine.get_binding_shape(binding))*engine.max_batch_size
+        # size = trt.volume(engine.get_binding_shape(binding))*engine.max_batch_size  # onnx是变量时采用这句的大小
         # volume 计算可迭代变量的空间，指元素个数
-        # size = trt.volume(engine.get_binding_shape(binding)) # 如果采用固定bs的onnx，则采用该句
+        size = trt.volume(engine.get_binding_shape(binding)) # 如果采用固定bs的onnx，则采用该句
         dtype = trt.nptype(engine.get_binding_dtype(binding))
         # get_binding_dtype 获得binding的数据类型
         # nptype等价于numpy中的dtype，即数据类型

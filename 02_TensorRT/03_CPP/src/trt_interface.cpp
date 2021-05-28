@@ -3,7 +3,6 @@
 //
 #include "trt_interface.h"
 #include "trt_infer.hpp"
-#include "log4plus_util.h"
 #include <iostream>
 #include <unistd.h>
 

@@ -11,7 +11,7 @@ BATCHSIZE(batchSize), INPUT_W(INPUT_W), INPUT_H(INPUT_H), INPUT_C(INPUT_C), OUTP
         trtModelStream = nullptr;
         initEngine(model_path, this->trtModelStream);
         assert(this->trtModelStream != nullptr);
-        std::cout << "Successfully reload trt file!!!!" << std::endl;
+        std::cout <<  << std::endl;
 }
 
 void TRT_Infer::initEngine(const std::string& engineFile, IHostMemory*& trtModelStream)
