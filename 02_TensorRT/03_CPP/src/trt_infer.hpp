@@ -33,6 +33,7 @@ struct TRT_Infer
 public:
     samplesCommon::Args gArgs;
     Logger gLogger;
+    // sample::Logger gLogger; 如果是3090上，需要使用 sample::Logger
 
     static IHostMemory* trtModelStream;
     static IRuntime* runtime;
