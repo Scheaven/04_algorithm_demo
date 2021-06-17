@@ -24,30 +24,32 @@
 #include "logging.h"
 #include "cuda_runtime_api.h"
 #include "NvInfer.h"
+#include "log4plus_util.h"
 #include <opencv2/opencv.hpp>
 
 #define DebugP(x) std::cout << "Line" << __LINE__ << "  " << #x << "=" << x << std::endl
+
 
 struct TRT_Infer
 {
 public:
     samplesCommon::Args gArgs;
     Logger gLogger;
-    // sample::Logger gLogger; 如果是3090上，需要使用 sample::Logger
 
     static IHostMemory* trtModelStream;
     static IRuntime* runtime;
     static ICudaEngine* engine;
     static IExecutionContext* context;
 
-    int INPUT_H = 256;
-    int INPUT_W = 128;
+    int INPUT_H = 224;
+    int INPUT_W = 224;
     int INPUT_C = 3;
-    int OUTPUT_SIZE = 2048;
+    int OUTPUT_SIZE = 2;
     int BATCHSIZE = 1;
+    // char* MODEL_TYPE = "pytorch";
 
-    const char* INPUT_BLOB_NAME = "inputs";
-    const char* OUTPUT_BLOB_NAME = "feature";
+    const char* INPUT_BLOB_NAME = "input_1";
+    const char* OUTPUT_BLOB_NAME = "reshape_2";
 
     const std::string gSampleName = "TensorRT.sample_onnx_image";
 

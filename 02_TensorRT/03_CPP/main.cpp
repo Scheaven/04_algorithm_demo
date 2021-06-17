@@ -15,6 +15,9 @@ typedef std::chrono::high_resolution_clock Time;
 typedef std::chrono::duration<double, std::ratio<1, 1000>> ms;
 typedef std::chrono::duration<float> fsec;
 
+int batchsize = 1;
+int out_size = 2;
+
 cv::Mat* deal_dst()
 {
     static cv::Mat* dst = NULL;
@@ -23,57 +26,70 @@ cv::Mat* deal_dst()
 
 int main(int argc, char const *argv[])
 {
-    cv::Mat image = cv::imread("/data/disk1/project/data/01_reid/0_1.png", cv::IMREAD_COLOR);
+    cv::Mat image = cv::imread("/data/disk1/project/01_py_project/02_classification/345.png");
     if (image.empty())
     {
         std::cout << "The input image is empty!!! Please check....." << std::endl;
     }
-    double total = 0.0;
-    double total2 = 0.0;
-    double total3 = 0.0;
+
     // run inference and cout time
     auto t0 = Time::now();
-    void* handle  = trtCreate("/data/disk2/tmp/004_algorithm_demo/02_TensorRT/03_CPP/4batch_fp16_True.trt", 1, 128, 256, 3, 2048);
+    void* handle  = trtCreate("/data/disk1/project/01_py_project/02_classification/01_mobilenetV1(keras)/test.txt", batchsize, 224, 224, 3, out_size);
 
     auto t1 = Time::now();
 
-    float conf[2048*1];
+    // float conf[out_size*batchsize];
 
     // DebugP(image.size());
-    cv::cvtColor(image, image, cv::COLOR_BGR2RGB);
-    cv::Mat dst = cv::Mat::zeros(256, 128, CV_32FC3);
-    cv::resize(image, dst, dst.size());
+    // cv::cvtColor(image, image, cv::COLOR_BGR2RGB);
+    // cv::Mat dst = cv::Mat::zeros(128, 256, CV_8UC3); // 宽高的位置是正确的
+    cv::Mat dst = cv::Mat::zeros(224, 224, CV_32FC3); // 宽高的位置是正确的
+    std::cout << dst.size() <<std::endl;
+    // cv::Mat dst;
+    cv::resize(image, dst, dst.size()); // 直接用 cv::Size(128, 256)的化，参数为h,w
     // cv::imshow("sdf", dst);
     // cv::waitKey(0);
 
-    float* data = img_normal(dst, 1);
-    auto t2 = Time::now();
-
-    float prob[2048*1];
-
-    trtDoInfer(handle, data, conf);
-    DEBUG("dsfskcxjvsd!");
-    DEBUG("我是debug!");
-    ERROR("::fo-so4032!");
-    ERROR("::ERROR!");
+    float* data = img_normal(dst, batchsize, "keras_else");
+    // float* tmp_data = new float[dst.rows*dst.cols * 3 * batchsize];
 
 
-    auto t3 = Time::now();
-    fsec fs = t1 - t0;
-    fsec f2 = t2 - t1;
-    fsec f3 = t3 - t2;
-    ms d = std::chrono::duration_cast<ms>(fs);
-    ms d2 = std::chrono::duration_cast<ms>(f2);
-    ms d3 = std::chrono::duration_cast<ms>(f3);
-    total += d.count();
-    total2 += d2.count();
-    total3 += d3.count();
-    // printf("%d\n",d );
-    std::cout << "Running time of one image is:" << total << "ms" << total2 << ":" <<total3 << std::endl;
-    // for(auto x:conf)
+    // while(1)
     // {
-    //     printf("-- %f\n", x);
+        // memcpy(tmp_data, data, dst.rows*dst.cols * 3 * batchsize);
+        double total = 0.0;
+        double total2 = 0.0;
+        double total3 = 0.0;
+        auto t2 = Time::now();
+        // float prob[out_size*batchsize];
+        std::shared_ptr<float> prob = std::shared_ptr<float>(new float[out_size*batchsize], std::default_delete<float[]>());
+        // std::shared_ptr<float> prob = std::make_shared<float>(new float[out_size*batchsize], std::default_delete<float[]>());
+        trtDoInfer(handle, data, prob.get());
+
+
+        auto t3 = Time::now();
+        fsec fs = t1 - t0;
+        fsec f2 = t2 - t1;
+        fsec f3 = t3 - t2;
+        ms d = std::chrono::duration_cast<ms>(fs);
+        ms d2 = std::chrono::duration_cast<ms>(f2);
+        ms d3 = std::chrono::duration_cast<ms>(f3);
+        total += d.count();
+        total2 += d2.count();
+        total3 += d3.count();
+        // printf("%d\n",d );
+        std::cout << "Running time of one image is:" << total << "ms" << total2 << ":" <<total3 << std::endl;
+
+        std::cout << *prob<<  "::" << prob.use_count()<<std::endl;
+        int kkk = 0;
+        for(;kkk<out_size*batchsize;kkk++)
+        {
+                // printf("---- %f\n", *(prob.get());
+            // if(kkk%out_size==0)
+                std::cout << prob.get()[kkk]<<std::endl;
+        }
     // }
 
     return 0;
 }
+

@@ -5,10 +5,14 @@
 src 下的文件是推理部分的代码编译情况 CMakeLists.txt也是给他们用的
 
 
+如果能够推理，但是出的结果和python版本的不一致，这种情况是数据处理的原因，
+就是数据送到推理模型的数据组织结构不一致造成的，在img_utils中增加了几种不同框架的数据处理
+
+
 
 重新不熟到3090上的版本bug注意事项
 ：
-TensorRT和1080Ti不一致，使用gLogger时直接使用sample::gLogger(在CPP中使用)
+TensorRT和1080Ti不一致，使用gLogger时直接使用sample::gLogger(在CPP中使用,应该是高版本RT的原因)
 CMakeList.txt 环境也发生变化：
 新增
 SET(TRT_SAMPLES_SRC ${TensorRT_DIR}/samples)

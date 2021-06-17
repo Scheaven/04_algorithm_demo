@@ -96,14 +96,83 @@ def load_engine(trt_runtime, engine_path):
    engine = trt_runtime.deserialize_cuda_engine(engine_data)
    return engine
 
-img = image.load_img(input_file_path, target_size=(224, 224))
-x = image.img_to_array(img)
-x = np.expand_dims(x, axis=0)
-print(x.shape)
-x = preprocess_input(x)
-im = np.asarray(x)
+def preprocess_i(x):
+    x /= 255.
+    x -= 0.5
+    x *= 2.
+    return x
 
-engine = load_engine(trt_runtime, serialized_plan_fp32)
-h_input, d_input, h_output, d_output, stream = allocate_buffers(engine, 1, trt.float32)
-out = do_inference(engine, im, h_input, d_input, h_output, d_output, stream, 1, HEIGHT, WIDTH)
-print(out)
+def preprocess_test(x):
+    x /= 255.
+    # x -= 0.5
+    # x *= 2.
+    return x
+
+def keras_preprocess(x):
+  x /=255
+  mean = [0.485, 0.456, 0.406]
+  std = [0.229, 0.224, 0.225]
+
+  x[..., 0] -= mean[0]
+  x[..., 1] -= mean[1]
+  x[..., 2] -= mean[2]
+  if std is not None:
+    x[..., 0] /= std[0]
+    x[..., 1] /= std[1]
+    x[..., 2] /= std[2]
+  return x
+
+def tf_preprocess(x):
+   x /= 127.5
+   x -= 1.
+   return x
+
+def else_preprocess(x):
+    x = x[..., ::-1]
+    mean = [103.939, 116.779, 123.68]
+    std = None
+    x[..., 0] -= mean[0]
+    x[..., 1] -= mean[1]
+    x[..., 2] -= mean[2]
+    if std is not None:
+      x[..., 0] /= std[0]
+      x[..., 1] /= std[1]
+      x[..., 2] /= std[2]
+    return x
+
+def pytorch_2_keras(x):
+  x *= 255
+  return x
+
+if __name__ == '__main__':
+  img = Image.open(img_path)
+  transform = transforms.Compose([
+      transforms.Resize([224, 224]),  # [h,w]
+      transforms.ToTensor(),
+      # transforms.RandomApply(transforms, p=255.)
+      ])
+  img = transform(img).unsqueeze(0)
+  img = img.numpy()
+  img = pytorch_2_keras(img)
+
+  img = np.transpose(img,(0,2,3,1))
+  # print(img)
+  img = else_preprocess(img)
+
+
+  # img = image.load_img(img_path, target_size=(img_h, img_w))
+  # x = image.img_to_array(img)
+  # x = np.expand_dims(x, axis=0)
+  # print("=",np.asarray(x))
+
+  # x = preprocess_input(x)
+  # x = else_preprocess(x)
+  # x = keras_preprocess(x)
+  # x = preprocess_test(x)
+  # img = np.asarray(x)
+
+
+  engine = load_engine(trt_runtime, serialized_plan_fp32)
+  h_input, d_input, h_output, d_output, stream = allocate_buffers(engine, 1, trt.float32)
+  out = do_inference(engine, im, h_input, d_input, h_output, d_output, stream, 1, HEIGHT, WIDTH)
+  print(out)

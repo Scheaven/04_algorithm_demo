@@ -37,6 +37,8 @@ void DEBUG_LOG(const string& strInfo, const string& strFile, int iLine)
     stringstream ssLogData;
     ssLogData << "[" << strFile << ":" << iLine << "] " << strInfo;
     std::cout << ssLogData.str() << std::endl;
+
+
     LOG4CPLUS_DEBUG(global_pLogger, ssLogData.str());
 }
 
