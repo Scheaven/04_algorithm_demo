@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="UTF-8"?><?xml-stylesheet type='text/xsl' href='_UpgradeReport_Files/UpgradeReport.xslt'?><UpgradeLog>
+<Properties><Property Name="Solution" Value="GaussBlur">
+</Property><Property Name="Solution File" Value="G:\君子兰\004工作\ImageProcess\003算法书籍资料\012智能算法研究\美妆算法\磨皮算法\快速双边滤波算法\GaussBlur.sln">
+</Property><Property Name="User Options File" Value="G:\君子兰\004工作\ImageProcess\003算法书籍资料\012智能算法研究\美妆算法\磨皮算法\快速双边滤波算法\GaussBlur.suo">
+</Property><Property Name="Date" Value="2016年6月20日">
+</Property><Property Name="Time" Value="11:07">
+</Property></Properties><Event ErrorLevel="0" Project="" Source="GaussBlur.sln" Description="File successfully backed up as G:\君子兰\004工作\ImageProcess\003算法书籍资料\012智能算法研究\美妆算法\磨皮算法\快速双边滤波算法\Backup\GaussBlur.sln">
+</Event><Event ErrorLevel="0" Project="" Source="GaussBlur.suo" Description="File successfully backed up as G:\君子兰\004工作\ImageProcess\003算法书籍资料\012智能算法研究\美妆算法\磨皮算法\快速双边滤波算法\Backup\GaussBlur.suo">
+</Event><Event ErrorLevel="0" Project="GaussBlur" Source="GaussBlur\GaussBlur.csproj" Description="Project file successfully backed up as G:\君子兰\004工作\ImageProcess\003算法书籍资料\012智能算法研究\美妆算法\磨皮算法\快速双边滤波算法\Backup\GaussBlur\GaussBlur.csproj">
+</Event><Event ErrorLevel="0" Project="GaussBlur" Source="GaussBlur\BEEPS.cs" Description="File successfully backed up as G:\君子兰\004工作\ImageProcess\003算法书籍资料\012智能算法研究\美妆算法\磨皮算法\快速双边滤波算法\Backup\GaussBlur\BEEPS.cs">
+</Event><Event ErrorLevel="0" Project="GaussBlur" Source="GaussBlur\Form1.cs" Description="File successfully backed up as G:\君子兰\004工作\ImageProcess\003算法书籍资料\012智能算法研究\美妆算法\磨皮算法\快速双边滤波算法\Backup\GaussBlur\Form1.cs">
+</Event><Event ErrorLevel="0" Project="GaussBlur" Source="GaussBlur\Form1.Designer.cs" Description="File successfully backed up as G:\君子兰\004工作\ImageProcess\003算法书籍资料\012智能算法研究\美妆算法\磨皮算法\快速双边滤波算法\Backup\GaussBlur\Form1.Designer.cs">
+</Event><Event ErrorLevel="0" Project="GaussBlur" Source="GaussBlur\Program.cs" Description="File successfully backed up as G:\君子兰\004工作\ImageProcess\003算法书籍资料\012智能算法研究\美妆算法\磨皮算法\快速双边滤波算法\Backup\GaussBlur\Program.cs">
+</Event><Event ErrorLevel="0" Project="GaussBlur" Source="GaussBlur\Properties\AssemblyInfo.cs" Description="File successfully backed up as G:\君子兰\004工作\ImageProcess\003算法书籍资料\012智能算法研究\美妆算法\磨皮算法\快速双边滤波算法\Backup\GaussBlur\Properties\AssemblyInfo.cs">
+</Event><Event ErrorLevel="0" Project="GaussBlur" Source="GaussBlur\Properties\Resources.Designer.cs" Description="File successfully backed up as G:\君子兰\004工作\ImageProcess\003算法书籍资料\012智能算法研究\美妆算法\磨皮算法\快速双边滤波算法\Backup\GaussBlur\Properties\Resources.Designer.cs">
+</Event><Event ErrorLevel="0" Project="GaussBlur" Source="GaussBlur\Properties\Settings.Designer.cs" Description="File successfully backed up as G:\君子兰\004工作\ImageProcess\003算法书籍资料\012智能算法研究\美妆算法\磨皮算法\快速双边滤波算法\Backup\GaussBlur\Properties\Settings.Designer.cs">
+</Event><Event ErrorLevel="0" Project="GaussBlur" Source="GaussBlur\Properties\Settings.settings" Description="File successfully backed up as G:\君子兰\004工作\ImageProcess\003算法书籍资料\012智能算法研究\美妆算法\磨皮算法\快速双边滤波算法\Backup\GaussBlur\Properties\Settings.settings">
+</Event><Event ErrorLevel="0" Project="GaussBlur" Source="GaussBlur\Form1.resx" Description="File successfully backed up as G:\君子兰\004工作\ImageProcess\003算法书籍资料\012智能算法研究\美妆算法\磨皮算法\快速双边滤波算法\Backup\GaussBlur\Form1.resx">
+</Event><Event ErrorLevel="0" Project="GaussBlur" Source="GaussBlur\Properties\Resources.resx" Description="File successfully backed up as G:\君子兰\004工作\ImageProcess\003算法书籍资料\012智能算法研究\美妆算法\磨皮算法\快速双边滤波算法\Backup\GaussBlur\Properties\Resources.resx">
+</Event><Event ErrorLevel="0" Project="GaussBlur" Source="GaussBlur\GaussBlur.csproj" Description="Project converted successfully">
+</Event><Event ErrorLevel="3" Project="GaussBlur" Source="GaussBlur\GaussBlur.csproj" Description="Converted">
+</Event><Event ErrorLevel="0" Project="" Source="GaussBlur.sln" Description="Solution converted successfully">
+</Event><Event ErrorLevel="3" Project="" Source="GaussBlur.sln" Description="Converted">
+</Event><Event ErrorLevel="0" Project="GaussBlur" Source="GaussBlur\GaussBlur.csproj" Description="Scan complete: Upgrade not required for project files.">
+</Event></UpgradeLog>
